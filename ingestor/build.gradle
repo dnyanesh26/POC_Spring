@@ -1,0 +1,50 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.5'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.self'
+version = '0.0.1-SNAPSHOT'
+description = 'File Ingestor'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Spring Boot base
+	implementation 'org.springframework.boot:spring-boot-starter'
+
+	// Kafka consumer + producer
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'com.oracle.database.jdbc:ojdbc17'
+	// DB (choose one)
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+//	implementation 'com.oracle.database.jdbc:ojdbc11:23.2.0.0'
+	// OR: implementation 'org.postgresql:postgresql'
+
+	// Optional: JPA
+	 implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// JSON parsing
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+	// Optional: Web + Actuator
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+	// Testing
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
